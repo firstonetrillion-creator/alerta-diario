@@ -2,6 +2,8 @@ import type { MetadataRoute } from 'next';
 import { getArticles, getAuthors } from '@/lib/articles';
 import { categories } from '@/lib/categories';
 
+export const dynamic = 'force-static';
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const ready = process.env.NEXT_PUBLIC_PUBLICATION_READY === 'true' && Boolean(process.env.NEXT_PUBLIC_SITE_URL);
   if (!ready) return [];
