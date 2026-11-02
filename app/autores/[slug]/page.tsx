@@ -4,7 +4,10 @@ import { ArticleGrid } from '@/components/article-grid';
 import { getArticles, getAuthors } from '@/lib/articles';
 
 export async function generateStaticParams() {
-  return (await getAuthors()).map((author) => ({ slug: author.slug }));
+  const authors = await getAuthors();
+  return authors.length
+    ? authors.map((author) => ({ slug: author.slug }))
+    : [{ slug: '__prelaunch__' }];
 }
 
 export const dynamicParams = false;
