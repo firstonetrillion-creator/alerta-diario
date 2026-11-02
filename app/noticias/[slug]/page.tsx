@@ -8,7 +8,9 @@ import { PortableBody } from '@/components/portable-body';
 
 export async function generateStaticParams() {
   const articles = await getArticles();
-  return articles.map((article) => ({ slug: article.slug }));
+  return articles.length
+    ? articles.map((article) => ({ slug: article.slug }))
+    : [{ slug: '__prelaunch__' }];
 }
 
 export const dynamicParams = false;
